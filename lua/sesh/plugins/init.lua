@@ -1,7 +1,6 @@
 return {
   'nvim-lua/plenary.nvim',
   'JoseConseco/telescope_sessions_picker.nvim',
-  'vim-airline/vim-airline',
   'toml-lang/toml',
   'cespare/vim-toml',
   'scrooloose/nerdcommenter',
