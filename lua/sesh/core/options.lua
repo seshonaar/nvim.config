@@ -57,3 +57,6 @@ opt.fixendofline = false
 opt.eol = false
 
 vim.api.nvim_set_option("syntax", "on");
+vim.cmd([[autocmd BufRead,BufNewFile *.targets setfiletype xml]])
+vim.cmd([[autocmd BufRead,BufNewFile *.props setfiletype xml]])
+vim.cmd([[autocmd BufRead,BufNewFile *.csproj setfiletype xml]])
