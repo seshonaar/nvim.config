@@ -7,6 +7,13 @@ return {
     local actions = require("diffview.actions")
 
     require("diffview").setup({
+      file_panel = {
+        win_config = {
+          width = 140,
+          height = 50,
+          type = "float"
+        },
+      },
       keymaps = {
         -- Override ESC key to toggle the file explorer instead of closing the diff session
         view = {
