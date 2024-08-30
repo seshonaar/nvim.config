@@ -6,14 +6,20 @@ return {
     local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
     local function repo_name()
-      local repo_name = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+      local path = vim.loop.cwd()
 
-      if repo_name then
-        repo_name = vim.fn.fnamemodify(repo_name, ':t') -- Get only the repository name from the path
-        return repo_name
-      else
-        return ''
+      while path do
+        local git_dir = path .. '/.git'
+        local stat = vim.loop.fs_stat(git_dir)
+
+        if stat and stat.type == 'directory' then
+          return path:match("[^/\\]+$")
+        end
+
+        path = path:match("(.*)[/\\]")
       end
+
+      return ''
     end
 
     local colors = {
