@@ -9,7 +9,7 @@ return {
     require("diffview").setup({
       file_panel = {
         win_config = {
-          width = 140,
+          width = 120,
           height = 50,
           type = "float"
         },

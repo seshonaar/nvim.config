@@ -1,5 +1,6 @@
 return {
   "NeogitOrg/neogit",
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",        -- required
     "seshonaar/diffview.nvim",      -- optional - Diff integration
@@ -82,9 +83,9 @@ return {
       end,
       { silent = true, noremap = true })
 
-    vim.keymap.set({ "n" }, "<leader>gB",
+    vim.keymap.set({ "n" }, "<leader>gl",
       function()
-        vim.cmd("G blame")
+        neogit.open({'log'})
       end,
       { silent = true, noremap = true })
   end
