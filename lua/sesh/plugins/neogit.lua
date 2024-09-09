@@ -45,6 +45,39 @@ return {
         { silent = true, noremap = true, buffer = bufnr })
     end
 
+    local function checkout_branch(prompt_bufnr)
+      local actions = require('telescope.actions')
+      local action_state = require('telescope.actions.state')
+      -- Get selected branch
+      local selected_entry = action_state.get_selected_entry()
+      local branch = selected_entry.value
+
+      -- Close Telescope
+      actions.close(prompt_bufnr)
+      print("Begin checkout branch " .. branch)
+      local branch_name = branch
+      local prefix = "origin/"
+      if (string.find(branch, prefix) == 1)
+      then
+        local branch_name = string.sub(branch, string.len(prefix) + 1)
+        print('Checkout with remote tracking: ' .. branch_name)
+        local command = '!git switch --discard-changes -C ' .. branch_name .. ' --track ' .. branch;
+        vim.api.nvim_command(command)
+      else
+        print('Checkout local branch: ' .. branch)
+        vim.api.nvim_command('!git switch -f ' .. branch)
+      end
+    end
+
+    local function select_git_branch()
+      require('telescope.builtin').git_branches {
+        attach_mappings = function(_, map)
+          map('i', '<CR>', checkout_branch)
+          map('n', '<CR>', checkout_branch)
+          return true
+        end
+      }
+    end
     -- Auto-command to apply the mapping only in the Neogit log view
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "NeogitLogView", -- Neogit log buffer file type
@@ -78,9 +111,7 @@ return {
       { silent = true, noremap = true })
 
     vim.keymap.set({ "n" }, "<leader>gb",
-      function()
-        vim.cmd("Telescope git_branches")
-      end,
+      select_git_branch,
       { silent = true, noremap = true })
 
     vim.keymap.set({ "n" }, "<leader>gl",
