@@ -31,9 +31,9 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "kanagawa" } },
+  install = { colorscheme = { "github_dark_default" } },
   -- automatically check for plugin updates
   checker = { enabled = false },
 })
 
-vim.cmd([[colorscheme kanagawa-dragon]])
+vim.cmd([[colorscheme github_dark_default]])
