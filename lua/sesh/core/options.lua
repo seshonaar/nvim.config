@@ -55,6 +55,7 @@ opt.hls = false
 -- Disable adding a newline at the end of the file
 opt.fixendofline = false
 opt.eol = false
+opt.fileformats = "unix,dos,mac"
 
 vim.api.nvim_set_option("syntax", "on");
 vim.cmd([[autocmd BufRead,BufNewFile *.targets setfiletype xml]])
