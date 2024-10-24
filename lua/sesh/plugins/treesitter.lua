@@ -19,6 +19,7 @@ return {
         treesitter.setup({ -- enable syntax highlighting
             highlight = {
                 enable = true,
+                additional_vim_regex_highlighting = {'diff'}
             },
             -- enable indentation
             indent = { enable = true },
@@ -42,7 +43,8 @@ return {
                 "gitignore",
                 "vimdoc",
                 "rust",
-                "toml"
+                "toml",
+                "c_sharp"
             },
             incremental_selection = {
                 enable = true,
